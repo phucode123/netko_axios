@@ -19,7 +19,8 @@ function LoginForm() {
                 expiresInMins: 30
             })
             if (dataLogin.status == 200) {
-                console.log(dataLogin);
+                // console.log(dataLogin);
+                document.cookie = `accessToken=${dataLogin.data.accessToken}; path=/`;
                 localStorage.setItem('accessToken', dataLogin.data.accessToken);
                 localStorage.setItem('refreshToken', dataLogin.data.refreshToken);
                 routers.push('/components/userpage');

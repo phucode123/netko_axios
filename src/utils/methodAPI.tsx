@@ -7,7 +7,7 @@ const fetchUserData = async (token: any) => {
                 'Authorization': `Bearer ${token}`,
             },
         });
-        console.log(response);
+        // console.log(response);
         return response.data
     } catch (error) {
         console.error('Error fetching user data:', error);
@@ -15,10 +15,10 @@ const fetchUserData = async (token: any) => {
 };
 
 const loginData = async (data: object) => {
-    console.log(data);
+    // console.log(data);
     try {
         const response = await api.post('/auth/login', data);
-        console.log("login:  " + response);
+        // console.log("login:  " + response);
         return response
     } catch (error) {
         console.log("loi trong login: " + error);

@@ -31,7 +31,7 @@ function Userpage() {
             getUserData();
         }
         else if (!token) {
-            router.push('/login');
+            router.push('/auth/login');
         }
     }, [token]);
 
