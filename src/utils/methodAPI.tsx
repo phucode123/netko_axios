@@ -1,23 +1,10 @@
-import {api} from "./axiosRequest";
+import { api } from "./axiosRequest";
 
-const fetchUserData = async (token: any) => {
-    try {
-        const response = await api.get('auth/me', {
-            headers: {
-                'Authorization': `Bearer ${token}`,
-            },
-        });
-        console.log(response);
-        return response.data
-    } catch (error) {
-        console.error('Error fetching user data:', error);
-    }
-};
 
 const loginData = async (data: object) => {
     console.log(data);
     try {
-        const response = await api.post('/auth/login', data);
+        const response = await api.post('/users', data);
         console.log("login:  " + response);
         return response
     } catch (error) {
@@ -25,22 +12,23 @@ const loginData = async (data: object) => {
     }
 }
 
-const refreshToken = async () => {
-    //auth/refresh
-    let refreshToken = localStorage.getItem('refreshToken');
-    // console.log(refreshToken);
+const getToDos = async () => {
     try {
-        const response = await api.post('/auth/refresh', {
-            refreshToken: refreshToken,
-            expiresInMins: 30,
-        });
-        console.log(response);
-        localStorage.setItem('accessToken', response.data.accessToken);
-        localStorage.setItem('refreshToken', response.data.refreshToken);
+        const response = await api.get('/todolist');
+        console.log("get:  " + response);
         return response
     } catch (error) {
-        console.log("loi refresh token: " + error);
+        console.log("loi trong get list: " + error);
+    }
+}
+const addToDo = async (data:object) => {
+    try {
+        const response = await api.post('/todolist',data);
+        console.log("get:  " + response);
+        return response
+    } catch (error) {
+        console.log("loi trong get list: " + error);
     }
 }
 
-export { fetchUserData, loginData, refreshToken }
+export { loginData , getToDos,addToDo}

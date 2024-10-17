@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
-import {api} from "@/utils/axiosRequest";
+import { api } from "@/utils/axiosRequest";
 import { loginData } from "@/utils/methodAPI";
 
 function LoginForm() {
@@ -11,19 +11,12 @@ function LoginForm() {
 
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-
-        const checkLogin = async ()=>{
-            let dataLogin:any = await loginData({
+        const checkLogin = async () => {
+            let dataLogin: any = await loginData({
                 username: username,
                 password: password,
-                expiresInMins: 30
             })
-            if (dataLogin.status == 200) {
-                console.log(dataLogin);
-                localStorage.setItem('accessToken', dataLogin.data.accessToken);
-                localStorage.setItem('refreshToken', dataLogin.data.refreshToken);
-                routers.push('/components/userpage');
-            }
+            console.log(dataLogin);
         }
         checkLogin()
     };
